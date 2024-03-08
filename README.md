@@ -7,7 +7,6 @@ This exercise will take the form of an experimental report detailing for finding
 - Heuristic Approaches
     + best-first search
     + A* search
-    + 
 You'll want to think about the initial conditions and how to check for a "valid" sequence and GOAL check at each step of the search process.
 NOTE: It's not necessary to reinvent the wheel here, many implementations of these methods exist and you might even get a "fair" solution from an LLM.
 
