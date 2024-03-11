@@ -2,7 +2,7 @@ import java.util.*;
 
 public class DepthFirstSearchWithIterativeDeepening {
 
-    private CityMap cityMap;
+    private final CityMap cityMap;
 
     public DepthFirstSearchWithIterativeDeepening(CityMap map){
         cityMap = map;
@@ -12,10 +12,11 @@ public class DepthFirstSearchWithIterativeDeepening {
         long startTime = System.nanoTime();
         List<String> route = iterativeDeepeningDFS(src, dest);
         long endTime = System.nanoTime();
-        long duration = (endTime - startTime); // Convert nanoseconds to milliseconds
+        long duration = (endTime - startTime);
         System.out.println("Time taken for searching: " + duration + " nanoseconds");
         return route;
     }
+
     private List<String> iterativeDeepeningDFS(String src, String dest) {
         int maxDepth = 0;
         while (true) {

@@ -4,7 +4,7 @@ public class DepthFirstSearch {
     CityMap cityMap;
 
     public DepthFirstSearch(CityMap map) {
-        cityMap=map;
+        cityMap = map;
     }
 
     List<String> findRoute(String src, String dest) {

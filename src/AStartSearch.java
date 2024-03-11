@@ -2,13 +2,22 @@ import java.util.*;
 
 public class AStartSearch {
 
-    private CityMap cityMap;
+    private final CityMap cityMap;
 
     public AStartSearch (CityMap map){
         cityMap = map;
     }
 
     public List<String> findRoute(String start, String goal) {
+        double startTime = System.nanoTime();
+        List<String> route = AStarSearch(start, goal);
+        double endTime = System.nanoTime();
+        double duration = (endTime - startTime);
+        System.out.println("Time taken for searching: " + duration + " nanoseconds");
+        return route;
+    }
+
+    public List<String> AStarSearch (String start, String goal) {
         PriorityQueue<Node> openSet = new PriorityQueue<>(Comparator.comparingDouble(node -> node.fCost));
         Set<String> closedSet = new HashSet<>();
         Map<String, String> parentMap = new HashMap<>();
@@ -22,7 +31,7 @@ public class AStartSearch {
         // Add start node to open set
         openSet.add(new Node(start, fScore.get(start)));
 
-        double startTime = System.nanoTime();
+       // double startTime = System.nanoTime();
 
         while (!openSet.isEmpty()) {
             Node current = openSet.poll();
@@ -36,8 +45,8 @@ public class AStartSearch {
                     node = parentMap.get(node);
                 }
 
-                double endTime = System.nanoTime();
-                System.out.println("Time of searching: " + (endTime - startTime) + " nanoseconds");
+                //double endTime = System.nanoTime();
+               // System.out.println("Time of searching: " + (endTime - startTime) + " nanoseconds");
 
                 return path;
             }
@@ -64,25 +73,6 @@ public class AStartSearch {
         // No path found
         return Collections.emptyList();
     }
-
-//    private double calculateDistance(double[] coord1, double[] coord2) {
-//        double lat1 = Math.toRadians(coord1[0]);
-//        double lon1 = Math.toRadians(coord1[1]);
-//        double lat2 = Math.toRadians(coord2[0]);
-//        double lon2 = Math.toRadians(coord2[1]);
-//
-//        double dLat = lat2 - lat1;
-//        double dLon = lon2 - lon1;
-//
-//        double a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-//                Math.cos(lat1) * Math.cos(lat2) *
-//                        Math.sin(dLon / 2) * Math.sin(dLon / 2);
-//
-//        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-//
-//        return RADIUS_OF_EARTH * c;
-//    }
-
 
     private double calculateHeuristic(String[] coord1, String[] coord2) {
         double latDiff = Double.parseDouble(coord2[0]) - Double.parseDouble(coord1[0]);

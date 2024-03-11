@@ -6,13 +6,12 @@ import java.util.*;
 
 public class CityMap {
 
-    private final String adjacenciesFile = "G:\\Shared drives\\yntp\\CS461- Introduction to AI\\Assignment\\Search methods\\src\\adjacencies.txt";
-    private final String coordinatesFile = "G:\\Shared drives\\yntp\\CS461- Introduction to AI\\Assignment\\Search methods\\src\\coordinates.csv";
+    private String adjacenciesFile = "G:\\Shared drives\\yntp\\CS461- Introduction to AI\\Assignment\\Search methods\\src\\adjacencies.txt";
+    private String coordinatesFile = "G:\\Shared drives\\yntp\\CS461- Introduction to AI\\Assignment\\Search methods\\src\\coordinates.csv";
 
     public ArrayList <String[]> cityAdjacency= new ArrayList<>();
     public Map<String, String[]> cityCoordinate = new HashMap<>();
     public Map <String, ArrayList<String>> mapAdjacency = new HashMap<>();
-    public Map<String[], Double> weightMap = new HashMap<>();
 
     public CityMap(){
         setCityAdjacency();
@@ -53,7 +52,7 @@ public class CityMap {
 //        }
     }
     public void setMapAdjacency(){
-        int count = 1;
+//        int count = 1;
         for (String city: cityCoordinate.keySet()){
 
 //            System.out.println(count+ ". "+city) ;

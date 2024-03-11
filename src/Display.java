@@ -4,40 +4,49 @@ import java.util.Scanner;
 
 public class Display {
 
-    private CityMap cityMap = new CityMap();
+    private final CityMap cityMap = new CityMap();
     private String source;
     private String destination;
     private String method;
-    private Scanner scanner = new Scanner(System.in);
+    private final Scanner scanner = new Scanner(System.in);
 
     public Display(){
         display();
     }
     public void display(){
         System.out.println("Given a list of city below, please type the name of source and destination: ");
-        Integer count = 1;
+        int count = 1;
         for (String city : cityMap.cityCoordinate.keySet()){
-            System.out.print(count + "." + city.toString() + "  ");
+            System.out.print(count + "." + city + "  ");
             if (count%10==0)
                 System.out.print("\n");
             count++;
         }
         System.out.println("\nEnter starting town: ");
         source = scanner.nextLine();
+        while(isCityExist(source)) {
+            System.out.println("Your city is not in the list, please provide a source city from the list above:");
+            source = scanner.nextLine();
+        }
+
         System.out.println("Enter ending town: ");
         destination = scanner.nextLine();
-        System.out.println("Choose a method below by input its index: \n" +
+        while(isCityExist(destination)){
+            System.out.println("Your city is not in the list, please provide a destination city from the list above:");
+            destination = scanner.nextLine();
+        }
+
+        System.out.println("Choose a method below by input its index:\n" +
                 "1. Depth First Search\n" +
                 "2. Breadth First Search\n" +
                 "3. DFS with Iterative Deepening\n" +
                 "4. Best First Search\n" +
                 "5. A* Search");
         method = scanner.nextLine();
-        displayResult();
         while (!method.equals("0")) {
+            displayResult();
             System.out.println("Choose other methods for comparison? OR type 0 to exist");
             method = scanner.nextLine();
-            displayResult();
         }
     }
     private List <String[]> routeCoordination (List<String> route){
@@ -89,5 +98,15 @@ public class Display {
         }
     }
 
+    private boolean isCityExist (String target){
+        boolean flag =false;
+        for (String city :cityMap.cityCoordinate.keySet()){
+            if (city.equals(target)) {
+                flag = true;
+                break;
+            }
+        }
+        return !flag;
+    }
 
 }

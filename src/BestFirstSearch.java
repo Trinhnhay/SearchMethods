@@ -17,55 +17,6 @@ public class BestFirstSearch {
         return route;
     }
 
-//public List<String> findRoute(String startCity, String endCity) {
-//    PriorityQueue<Map.Entry<String, Double>> queue = new PriorityQueue<>(Comparator.comparingDouble(Map.Entry::getValue));
-//    Map<String, Double> heuristicMap = new HashMap<>();
-//    Map<String, String> parentMap = new HashMap<>();
-//    Set<String> visited = new HashSet<>();
-//
-//    String[] startCoords = cityMap.cityCoordinate.get(startCity);
-//    String[] endCoords = cityMap.cityCoordinate.get(endCity);
-//
-//    queue.add(new AbstractMap.SimpleEntry<>(startCity, 0.0));
-//    heuristicMap.put(startCity, 0.0);
-//
-//    while (!queue.isEmpty()) {
-//        Map.Entry<String, Double> currentCity = queue.poll();
-//        System.out.println(currentCity);
-//        String cityName = currentCity.getKey();
-//        visited.add(cityName);
-//
-//        if (cityName.equals(endCity)) {
-//            List<String> shortestPath = new ArrayList<>();
-//            String node = endCity;
-//            while (node != null) {
-//                shortestPath.add(0, node);
-//                node = parentMap.get(node);
-//            }
-//            return shortestPath;
-//        }
-//
-//        for (String neighbor : cityMap.mapAdjacency.get(cityName)) {
-//            if (!visited.contains(neighbor)) {
-//                String [] currentCoord = cityMap.cityCoordinate.get(currentCity.getKey());
-//                String[] neighborCoords = cityMap.cityCoordinate.get(neighbor);
-//                Distance distance = new Distance(cityMap);
-//                double heuristic = distance.calculateDistance(currentCoord, neighborCoords);
-//                System.out.println(heuristic);
-//                double totalCost = currentCity.getValue() + heuristic;
-//                if (!heuristicMap.containsKey(neighbor) || totalCost < heuristicMap.get(neighbor)) {
-//                    heuristicMap.put(neighbor, totalCost);
-//                    parentMap.put(neighbor, cityName);
-//                    queue.add(new AbstractMap.SimpleEntry<>(neighbor, totalCost));
-//                    System.out.println(queue);
-//                }
-//            }
-//        }
-//    }
-//
-//    return null; // No path found
-//}
-
     public ArrayList<String> bestFirstSearch( String start, String goal) {
         PriorityQueue<Map.Entry<String, Double>> priorityQueue = new PriorityQueue<>(Comparator.comparingDouble(Map.Entry::getValue));
         Map<String, String> parent = new HashMap<>();
